@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sura</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <header>
+        <form id="top-form" action="/search" method="post">
+            <input type="text" name="searchQuery" id="search-engien" placeholder="Search"  required />
+            <button type="submit"><i class="material-icons">search</i></button>
+        </form>
+    </header>
+    <div id="homepage-body">
+       <% if (locals.content){%>
+        <% content.forEach(element => {%>
+             <div class="image-container">
+                <Blurhash hash="<%= element.blur_hash %>" width="500" height="500" />
+                <img src="<%= element.urls.raw +"&h=1000" %>" alt="<%= element.alt_description %>"/>
+                <button><i class="material-icons">download</i></button>
+            </div>
+      <%  }); %>
+    </div>
+        <%}else {%>
+        <div id="error">
+                    <h1>Something went wrong</h1>
+                    <i class="material-icons" id="wifi-off" >wifi_off</i>
+                    <p>Please check your connection!</p>
+        </div>
+       <%  }%>
+    
+</body>
+
+</html>
